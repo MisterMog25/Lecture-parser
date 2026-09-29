@@ -16,11 +16,7 @@ Return only the translation, no quotes or commentary."""
 
 
 class Translator:
-    """Translates lecture text. Tries the primary provider, then falls back.
-
-    Google's Gemini occasionally returns 503 (model overloaded); OpenRouter adds
-    automatic provider failover too, so both paths are retried with backoff.
-    """
+    """Translates lecture text; each provider is retried with backoff on 503/429."""
 
     def __init__(self, config: AppConfig):
         self.config = config
@@ -39,7 +35,6 @@ class Translator:
             self._http.close()
             self._http = None
 
-    # -- clients ---------------------------------------------------------
     def _http_client(self) -> httpx.Client:
         if self._http is None:
             self._http = httpx.Client(
@@ -59,7 +54,6 @@ class Translator:
             self._gemini = genai.Client(api_key=self.config.gemini_api_key)
         return self._gemini
 
-    # -- public ----------------------------------------------------------
     def translate(self, text: str, ctx: LectureContext) -> str:
         if not text.strip():
             return ""
@@ -79,7 +73,6 @@ class Translator:
             raise last
         return ""
 
-    # -- providers -------------------------------------------------------
     def _user_prompt(self, text: str, ctx: LectureContext) -> str:
         vocab = ", ".join(ctx.keywords) if ctx.keywords else "(none)"
         return (

@@ -56,7 +56,6 @@ def retry_call(
     max_delay: float = 12.0,
     on_retry: Callable[[int, Exception], None] | None = None,
 ) -> T:
-    """Call fn, retrying transient failures with exponential backoff + jitter."""
     delay = base_delay
     last: Exception | None = None
     for attempt in range(1, attempts + 1):
@@ -87,8 +86,6 @@ def request_with_retry(
     max_delay: float = 12.0,
     on_retry: Callable[[int, Exception], None] | None = None,
 ) -> httpx.Response:
-    """HTTP request that retries 429/5xx responses and transport errors."""
-
     def _do() -> httpx.Response:
         resp = client.request(method, url, headers=headers, json=json, timeout=timeout)
         if resp.status_code in RETRY_STATUS:

@@ -242,9 +242,7 @@ class LectureSession:
 
     def _queue_phrase(self, parts: list[np.ndarray], start: float, end: float) -> None:
         audio = np.concatenate(parts)
-        # Keep the transcript live under fast speech: if the ASR worker is
-        # behind, drop the oldest *pending* phrase rather than falling further
-        # and further behind in real time.
+        # Drop the oldest pending phrase when the ASR falls behind (see MAX_PENDING_PHRASES).
         dropped = False
         while self._jobs.qsize() >= self.config.max_pending_phrases:
             try:

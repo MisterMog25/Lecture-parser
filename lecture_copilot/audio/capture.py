@@ -59,7 +59,7 @@ def resample_mono(audio: np.ndarray, src_rate: int, dst_rate: int) -> np.ndarray
 
 
 class LoopbackCapture:
-    """WASAPI loopback: системний звук (Webex/Teams/YouTube), включно з Bluetooth-виходом."""
+    """WASAPI loopback capture: system audio (Webex/Teams/YouTube, incl. Bluetooth)."""
 
     def __init__(self, device: LoopbackDevice | None = None, frames_per_buffer: int = 2048):
         self.device = device or default_loopback()
