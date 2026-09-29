@@ -1,16 +1,11 @@
-"""AI-first export.
+"""AI-first export: the machine-facing artefacts an LLM/agent consumes.
 
-The human-facing `lecture.md` is for reading. This module produces the
-*machine-facing* artefacts that an LLM/agent consumes:
+- ``lecture.ai.json``  canonical structured bundle (single source of truth)
+- ``lecture.pack.md``  compact, cleaned markdown (cheap to ingest)
+- ``manifest.json``    index of every asset + how to use them
+- ``moodle/``          drop-zone for the teacher's own slides (PDF/images)
 
-- ``lecture.ai.json``  – canonical structured bundle (single source of truth)
-- ``lecture.pack.md``  – compact, cleaned, LLM-optimised markdown (one file, cheap to ingest)
-- ``manifest.json``    – machine index of every asset + how to use them
-- ``moodle/``          – drop-zone for the teacher's own slides (PDF/images)
-
-A deterministic cleaning pass runs first: consecutive repeats are collapsed,
-ASR artefacts/hallucinations are dropped, whitespace is normalised. The point is
-that the deck-building agent receives signal, not noise.
+A deterministic cleaning pass runs first, so the deck agent gets signal, not noise.
 """
 
 from __future__ import annotations
@@ -157,8 +152,7 @@ def _slide_weight(slide: dict) -> int:
 def clean_slides(slides: list[dict], dedup_ratio: float = 0.85) -> list[dict]:
     """Collapse consecutive re-captures of the same slide (cursor jitter, re-render).
 
-    Keeps the richest version and records how many times it was seen, so the
-    downstream agent gets signal instead of eight near-identical frames of one slide.
+    Keeps the richest version and records how many times it was seen.
     """
     out: list[dict] = []
     bodies: list[set[str]] = []
@@ -254,7 +248,6 @@ def build_bundle(lecture_id: int) -> tuple[dict, Path]:
 
 
 def render_pack(bundle: dict) -> str:
-    """Compact, LLM-optimised single-file markdown."""
     lec = bundle["lecture"]
     stats = bundle["stats"]
     lines = [

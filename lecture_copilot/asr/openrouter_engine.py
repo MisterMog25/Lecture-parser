@@ -26,11 +26,7 @@ def _to_wav_bytes(audio_16k: np.ndarray, sample_rate: int) -> bytes:
 
 
 class OpenRouterASR:
-    """Cloud speech-to-text through OpenRouter's /audio/transcriptions endpoint.
-
-    Offloads transcription from the CPU (routed to fast Whisper-class providers
-    such as Groq), which also keeps up with fast speakers.
-    """
+    """Cloud STT via OpenRouter's /audio/transcriptions endpoint (offloads the CPU)."""
 
     label = "OpenRouter (cloud)"
 

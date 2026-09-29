@@ -88,7 +88,7 @@ class AppConfig:
         default_factory=lambda: int(os.getenv("MAX_PENDING_PHRASES", "3") or 3)
     )
 
-    # -- Slide / blackboard capture (Phase 3) --
+    # -- Slide / blackboard capture --
     openrouter_slide_model: str = field(
         default_factory=lambda: os.getenv("OPENROUTER_SLIDE_MODEL", "google/gemini-2.5-flash-lite")
     )

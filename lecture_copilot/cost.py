@@ -6,10 +6,9 @@ _LABELS = {"stt": "STT", "translate": "переклад", "slides": "слайд�
 
 
 class CostTracker:
-    """Thread-safe accumulator for API spend reported by OpenRouter `usage.cost`.
+    """Accumulates API spend from OpenRouter's `usage.cost` (thread-safe).
 
-    Only OpenRouter responses carry a cost field, so Gemini-direct calls are not
-    counted here.
+    Gemini-direct calls carry no cost field and are not counted.
     """
 
     def __init__(self) -> None:

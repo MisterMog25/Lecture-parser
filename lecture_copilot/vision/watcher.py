@@ -41,10 +41,8 @@ def _similar(a: str, b: str, ratio: float) -> bool:
 class SlideWatcher:
     """Polls the screen cheaply and OCRs only frames that settle after a change.
 
-    Flow: grab -> perceptual fingerprint -> if changed, remember frame ->
-    once the frame has been stable for `settle` seconds, save + extract.
-    This captures a finished slide or finished blackboard notes, not every
-    intermediate stroke, and never re-extracts while nothing changes.
+    Captures a finished slide or finished blackboard notes, not every intermediate
+    stroke, and never re-extracts while nothing changes.
     """
 
     def __init__(
