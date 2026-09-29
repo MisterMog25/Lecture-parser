@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8" />
+<title>Lecture deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false})"></script>
+<style>
+  :root{
+    --bg:#0b1420; --card:#152436; --card2:#101d2c; --line:#24384f;
+    --ink:#eef4fb; --muted:#94a9c1; --cyan:#63d2e8; --coral:#f0715a; --amber:#f5c26b;
+    --maxw:1220px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#05090f;color:var(--ink);
+    font-family:Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  @page{size:13.333in 7.5in;margin:0}
+  .slide{
+    width:13.333in;height:7.5in;padding:.62in .8in;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;page-break-after:always;break-after:page;
+    background:
+      linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/46px 46px,
+      linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/46px 46px,
+      radial-gradient(1100px 560px at 62% -12%,#16283d,transparent 70%),
+      var(--bg);
+  }
+  .slide:last-child{page-break-after:auto}
+  .eyebrow{font-size:11pt;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);font-weight:700}
+  .eyebrow .coral{color:var(--coral)}
+  h1.title{font-family:Unbounded,Manrope,sans-serif;font-weight:800;line-height:1.02;
+    font-size:46pt;margin:.13in 0 .06in;letter-spacing:-.01em}
+  .lead{color:var(--muted);font-size:15pt;margin:0 0 .22in;max-width:9.2in}
+  .rule{height:1px;background:var(--line);margin:.1in 0 .22in}
+  .cards{display:grid;gap:.2in;flex:1;align-content:center}
+  .cards.c2{grid-template-columns:1fr 1fr}
+  .cards.c3{grid-template-columns:1fr 1fr 1fr}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.2in .24in}
+  .card.soft{background:var(--card2)}
+  .pill{display:inline-block;background:rgba(99,210,232,.14);color:var(--cyan);border-radius:999px;
+    padding:.04in .14in;font-size:10.5pt;font-weight:700;letter-spacing:.04em;margin-bottom:.1in}
+  .pill.coral{background:rgba(240,113,90,.16);color:var(--coral)}
+  .card h3{margin:.02in 0 .1in;font-size:16pt;font-weight:800}
+  .card p{margin:.06in 0;color:#cfdcea;font-size:12.5pt;line-height:1.42}
+  .card ul{margin:.06in 0;padding-left:.22in;color:#cfdcea;font-size:12.5pt;line-height:1.5}
+  .math{font-size:15pt}
+  .katex{color:#eaf2fb}
+  .code{font-family:ui-monospace,Consolas,monospace;background:#0a1522;border:1px solid var(--line);
+    border-radius:10px;padding:.14in .18in;font-size:11.5pt;color:#bfe7d6;white-space:pre-wrap}
+  .foot{position:absolute;left:.8in;right:.8in;bottom:.34in;display:flex;justify-content:space-between;
+    color:#6f86a1;font-size:10pt;border-top:1px solid var(--line);padding-top:.1in}
+  .foot .pg{color:var(--muted);font-weight:700}
+  .hero{flex:1;display:flex;align-items:center;justify-content:center}
+  .agenda{display:grid;gap:.02in;flex:1;align-content:start;margin-top:.06in}
+  .row{display:grid;grid-template-columns:1.1in 2.6in 1fr;align-items:center;gap:.2in;
+    padding:.18in .1in;border-bottom:1px solid rgba(36,56,79,.6)}
+  .row .num{font-family:Unbounded,sans-serif;font-weight:800;font-size:20pt;color:var(--cyan)}
+  .row.dim .num{color:#4d6478}
+  .row .name{font-weight:700;font-size:14pt}
+  .row .desc{color:var(--muted);font-size:12pt}
+  .divider{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .divider .big{font-family:Unbounded,sans-serif;font-weight:900;font-size:60pt;line-height:1}
+  .divider .sub{color:var(--muted);font-size:16pt;margin-top:.14in}
+  .title-slide .hero{overflow:hidden}
+  .title-slide .hero svg{width:100%;max-width:6.1in;height:auto}
+  .title-slide h1{font-size:66pt}
+  .title-slide .meta{color:var(--muted);font-size:13pt;margin-top:.06in}
+  .kicker{position:absolute;left:.8in;bottom:.7in;color:#6f86a1;font-size:11pt;letter-spacing:.12em}
+</style>
+</head>
+<body>
+
+<!-- TITLE SLIDE -->
+<section class="slide title-slide">
+  <div class="eyebrow">Matematika 1 · <span class="coral">Лекція 1</span></div>
+  <div style="display:flex;gap:.4in;align-items:center;flex:1">
+    <div style="flex:1.05">
+      <h1 class="title">Множини<br/>і функції</h1>
+      <div class="lead">Množiny · Funkcia — конспект лекції за слайдами та записом</div>
+      <div class="meta">KMTI FEI TUKE · 23.09.2026</div>
+    </div>
+    <div class="hero" style="flex:1">
+      <svg viewBox="0 0 620 360" fill="none">
+        <line x1="310" y1="20" x2="310" y2="340" stroke="#39506a" stroke-width="1.5"/>
+        <line x1="30" y1="180" x2="590" y2="180" stroke="#39506a" stroke-width="1.5"/>
+        <path d="M60 60 Q 310 420 560 60" stroke="#63d2e8" stroke-width="3"/>
+        <path d="M60 250 Q 170 -20 310 180 T 560 250" stroke="#f0715a" stroke-width="3"/>
+        <circle cx="310" cy="180" r="7" fill="#63d2e8" stroke="#0b1420" stroke-width="2"/>
+        <circle cx="160" cy="200" r="6" fill="#f0715a" stroke="#0b1420" stroke-width="2"/>
+        <circle cx="460" cy="200" r="6" fill="#f0715a" stroke="#0b1420" stroke-width="2"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA / MAP -->
+<section class="slide">
+  <div class="eyebrow">00 · Карта лекції</div>
+  <h1 class="title" style="font-size:36pt">Що було на лекції</h1>
+  <p class="lead">Спочатку мова множин, потім мова функцій. Пункт 05 — наступного тижня.</p>
+  <div class="agenda">
+    <div class="row"><div class="num">01</div><div class="name">Množiny</div><div class="desc">Підмножини, способи задання, операції, декартів добуток</div></div>
+    <div class="row"><div class="num">02</div><div class="name">Čísla a intervaly</div><div class="desc">Від ℕ до ℂ, проміжки, ℝ*, окіл, модуль</div></div>
+    <div class="row"><div class="num">03</div><div class="name">Ohraničenosť</div><div class="desc">Max і min, верхня і нижня межа, sup і inf</div></div>
+    <div class="row"><div class="num">04</div><div class="name">Funkcia</div><div class="desc">Означення, D(f), H(f), G(f), рівність, звуження</div></div>
+    <div class="row dim"><div class="num">05</div><div class="name">Vlastnosti funkcie</div><div class="desc">Наперед: властивості та елементарні функції</div></div>
+  </div>
+  <div class="foot"><span>Matematika 1 · Množiny a funkcia · FEI TUKE</span><span class="pg">02</span></div>
+</section>
+
+<!-- CONTENT SLIDE -->
+<section class="slide">
+  <div class="eyebrow">02 · <span class="coral">Množiny</span></div>
+  <h1 class="title" style="font-size:34pt">Як задавати множини</h1>
+  <p class="lead">Два способи: перелічити елементи або описати умову.</p>
+  <div class="cards c2">
+    <div class="card">
+      <span class="pill">1 · Перелік</span>
+      <h3 class="math">$A = \{1, 2, 3\}$</h3>
+      <p>Зручно для скінченних множин: просто перелічуємо всі елементи.</p>
+      <p>Порядок не важливий, повтори не рахуються: $\{1,1,2\}=\{2,1\}$.</p>
+    </div>
+    <div class="card">
+      <span class="pill coral">2 · Умова</span>
+      <h3 class="math">$A = \{\,x \in \mathbb{R} : x \ge 2\,\}$</h3>
+      <p>Загалом: $A = \{x \in M : V(x)\}$ — усі елементи $M$ з властивістю $V(x)$.</p>
+      <p>Замість «:» можна писати «;» — обидва записи правильні.</p>
+    </div>
+  </div>
+  <div class="card soft" style="margin-top:.2in">
+    <p style="margin:0">Та сама множина як проміжок: $\;A = [2, +\infty)$ &nbsp;·&nbsp; на слайдах викладача: $(2, +\infty)$</p>
+  </div>
+  <div class="foot"><span>Matematika 1 · Množiny a funkcia · FEI TUKE</span><span class="pg">05</span></div>
+</section>
+
+</body>
+</html>

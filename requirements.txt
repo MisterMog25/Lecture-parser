@@ -1,0 +1,9 @@
+numpy>=2.0.0
+faster-whisper>=1.1.1
+PyAudioWPatch>=0.2.12.post24
+customtkinter>=5.2.2
+google-genai>=1.12.0
+python-dotenv>=1.0.1
+httpx>=0.28.0
+Pillow>=11.0.0
+mss>=9.0

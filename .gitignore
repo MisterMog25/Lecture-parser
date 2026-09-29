@@ -1,0 +1,21 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# secrets
+.env
+
+# generated output: recordings, transcripts, slides, decks, sqlite
+# (kept local on purpose - these are your lectures, not source code)
+data/
+lectures/
+*.db
+
+.idea/
+.vscode/
+*.log
+.DS_Store
+
