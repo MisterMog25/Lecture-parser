@@ -56,8 +56,8 @@ SQLite + slides
 ## Install
 
 ```powershell
-git clone <your-repo-url>
-cd supertool
+git clone https://github.com/MisterMog25/Lecture-parser.git
+cd Lecture-parser
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
