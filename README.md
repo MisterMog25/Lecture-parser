@@ -170,6 +170,19 @@ from WSL, and falls back to a Linux chromium if there is one.
 This step is optional and the repo doesn't insist on any particular agent — the bundle is
 plain Markdown and JSON, so anything that can read a file can do it.
 
+### Helper tools (`tools/`)
+
+| Script | Purpose |
+| --- | --- |
+| `bundle_index.py <folder>` | compact bundle index (slide list + transcript sample) so a planner doesn't have to load the ~0.5 MB pack |
+| `crop_webex.py <img...>` | crop the Webex meeting chrome off a screen capture, writing `<name>_crop.jpg` |
+| `render_deck.sh <deck_dir>` | `deck.html` → `deck.pdf` (16:9) + `preview/*.png` |
+| `deck_template.html` | the deck design template (dark FEI TUKE style) |
+
+Note on captures: Lecture Copilot saves *Webex window* screenshots, so a raw capture
+includes the meeting header, the participant video and the bottom toolbar around the
+shared board. Run it through `crop_webex.py` before using it as a slide image.
+
 ## Speeding up local Whisper
 
 - Use a smaller model (`tiny`, `base`) in the Whisper dropdown. Faster, less accurate.
